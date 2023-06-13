@@ -11,6 +11,7 @@ export async function retrieveMessage(
       oldest: message_ts,
       limit: 1,
       inclusive: true,
+      include_all_metadata: true,
     }).then(async (response) => {
       if (!response.messages || response.messages.length === 0) {
         response = await client.conversations.replies({
@@ -18,6 +19,7 @@ export async function retrieveMessage(
           ts: message_ts,
           limit: 1,
           inclusive: true,
+          include_all_metadata: true,
         });
       }
 
