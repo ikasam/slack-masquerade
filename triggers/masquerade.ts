@@ -14,6 +14,9 @@ const settingTrigger: Trigger<typeof MasqueradeWorkflow.definition> = {
     original_user: {
       value: TriggerContextData.Shortcut.user_id,
     },
+    channel: {
+      value: TriggerContextData.Shortcut.channel_id,
+    },
   },
 };
 

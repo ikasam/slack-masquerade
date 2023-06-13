@@ -12,8 +12,11 @@ const workflow = DefineWorkflow({
       original_user: {
         type: Schema.slack.types.user_id,
       },
+      channel: {
+        type: Schema.slack.types.channel_id,
+      },
     },
-    required: ["interactivity", "original_user"],
+    required: ["interactivity", "original_user", "channel"],
   },
 });
 
