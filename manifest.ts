@@ -10,7 +10,7 @@ import UnmasqueradeWorkflow from "./workflows/unmasquerade.ts";
 export default Manifest({
   name: "Masquerade",
   description: "他人になりすましてメッセージを送信する",
-  icon: "assets/default_new_app_icon.png",
+  icon: "assets/liandrys_mask.png",
   functions: [],
   workflows: [MasqueradeWorkflow, UnmasqueradeWorkflow],
   outgoingDomains: [],
