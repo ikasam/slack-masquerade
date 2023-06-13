@@ -34,8 +34,7 @@ const formStep = workflow.addStep(
       }, {
         name: "message",
         title: "メッセージ",
-        type: Schema.types.string,
-        long: true,
+        type: Schema.slack.types.rich_text,
       }],
       required: ["pretend_user", "message"],
     },
