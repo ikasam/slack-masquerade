@@ -37,8 +37,17 @@ const formStep = workflow.addStep(
   },
 );
 
-workflow.addStep(DetectPretenderFunction, {
+const functionStep = workflow.addStep(DetectPretenderFunction, {
   message_link: formStep.outputs.fields.message_link,
 });
+
+workflow.addStep(
+  Schema.slack.functions.SendEphemeralMessage,
+  {
+    channel_id: workflow.inputs.channel,
+    user_id: workflow.inputs.user,
+    message: functionStep.outputs.result,
+  },
+);
 
 export default workflow;

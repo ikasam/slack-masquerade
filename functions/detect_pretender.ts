@@ -14,6 +14,14 @@ export const DetectPretenderFunction = DefineFunction({
     },
     required: ["message_link"],
   },
+  output_parameters: {
+    properties: {
+      result: {
+        type: Schema.types.string,
+      },
+    },
+    required: ["result"],
+  },
 });
 
 export default SlackFunction(
@@ -37,6 +45,17 @@ export default SlackFunction(
     const message = await retrieveMessage(client, channel_id, message_ts);
     console.debug(message);
 
-    return { outputs: {} };
+    if (message.metadata?.event_type !== "pretending_message") {
+      return { outputs: { result: "このメッセージはなりすまされていません" } };
+    }
+
+    const original_user = message.metadata.event_payload.original_user;
+
+    return {
+      outputs: {
+        result:
+          `*<${inputs.message_link}|このメッセージ>は <@${original_user}> によってなりすまされています！！！*`,
+      },
+    };
   },
 );
