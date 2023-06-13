@@ -44,6 +44,7 @@ export default SlackFunction(
       text: inputs.message,
       username: user.profile.real_name,
       icon_url: user.profile.image_1024,
+      metadata: { original_user: inputs.original_user },
     });
 
     if (!response.ok) {
