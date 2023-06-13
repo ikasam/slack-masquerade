@@ -1,4 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
+import { SendMessageFunction } from "../functions/send_message.ts";
 
 const workflow = DefineWorkflow({
   callback_id: "masquerade",
@@ -20,14 +21,14 @@ const workflow = DefineWorkflow({
   },
 });
 
-workflow.addStep(
+const formStep = workflow.addStep(
   Schema.slack.functions.OpenForm,
   {
     title: "Masquerade",
     interactivity: workflow.inputs.interactivity,
     fields: {
       elements: [{
-        name: "pretending_user",
+        name: "pretend_user",
         title: "なりすますユーザー",
         type: Schema.slack.types.user_id,
       }, {
@@ -36,9 +37,16 @@ workflow.addStep(
         type: Schema.types.string,
         long: true,
       }],
-      required: ["pretending_user", "message"],
+      required: ["pretend_user", "message"],
     },
   },
 );
+
+workflow.addStep(SendMessageFunction, {
+  original_user: workflow.inputs.original_user,
+  pretend_user: formStep.outputs.fields.pretend_user,
+  channel: workflow.inputs.channel,
+  message: formStep.outputs.fields.message,
+});
 
 export default workflow;

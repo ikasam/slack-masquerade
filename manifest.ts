@@ -13,5 +13,11 @@ export default Manifest({
   functions: [],
   workflows: [MasqueradeWorkflow],
   outgoingDomains: [],
-  botScopes: ["commands", "chat:write", "chat:write.public"],
+  botScopes: [
+    "commands",
+    "chat:write",
+    "chat:write.public",
+    "chat:write.customize",
+    "users.profile:read",
+  ],
 });
