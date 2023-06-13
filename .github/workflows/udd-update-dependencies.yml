@@ -5,7 +5,6 @@ on:
 
 jobs:
   update-dependencies:
-    if: github.repository == 'slack-samples/deno-blank-template'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,7 +13,7 @@ jobs:
           deno-version: 1.20.2
       - name: Update dependencies
         run: |
-          deno run -A https://deno.land/x/udd/main.ts slack.json import_map.json 
+          deno run -A https://deno.land/x/udd/main.ts slack.json import_map.json
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         id: pr

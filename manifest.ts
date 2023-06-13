@@ -6,8 +6,8 @@ import { Manifest } from "deno-slack-sdk/mod.ts";
  * https://api.slack.com/future/manifest
  */
 export default Manifest({
-  name: "hopeful-ox-626",
-  description: "A blank template for building Slack apps with Deno",
+  name: "Masquerade",
+  description: "他人になりすましてメッセージを送信する",
   icon: "assets/default_new_app_icon.png",
   functions: [],
   workflows: [],
